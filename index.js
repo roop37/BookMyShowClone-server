@@ -4,6 +4,7 @@ const app = express();
 const PORT = 8000;
 const authRoute = require("./routes/authRoutes");
 app.use(bodyParser.json());
+const mongoose=require("mongoose")
 
 mongoose
   .connect("mongodb://localhost:27017/bookmyshow")
