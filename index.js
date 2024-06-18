@@ -4,11 +4,16 @@ const app = express();
 const PORT = 8000;
 const authRoute = require("./routes/authRoutes");
 app.use(bodyParser.json());
+const conectDB = require("./utils/db");
 const mongoose = require("mongoose");
 
-mongoose
-  .connect("mongodb://localhost:27017/bookmyshow")
-  .then((e) => console.log("mongodB connected"));
+// mongoose
+//   .connect(
+//     "mongodb+srv://sanbedan9989:Ilowemcgs1PwVBUw@clusterbookmyshow.a53ppuy.mongodb.net/?retryWrites=true&w=majority&appName=ClusterBookMyShow"
+//   )
+//   .then((e) => console.log("mongodB connected"));
+
+conectDB();
 
 app.get("/", (req, res) => {
   res.send("Hello");
