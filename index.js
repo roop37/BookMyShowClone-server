@@ -7,12 +7,6 @@ app.use(bodyParser.json());
 const conectDB = require("./utils/db");
 const mongoose = require("mongoose");
 
-// mongoose
-//   .connect(
-//     "mongodb+srv://sanbedan9989:Ilowemcgs1PwVBUw@clusterbookmyshow.a53ppuy.mongodb.net/?retryWrites=true&w=majority&appName=ClusterBookMyShow"
-//   )
-//   .then((e) => console.log("mongodB connected"));
-
 conectDB();
 
 app.get("/", (req, res) => {
@@ -24,13 +18,3 @@ app.use("/auth", authRoute);
 // app.use("/user", userRoutes);
 
 app.listen(PORT, () => console.log(`Server running on ${PORT}`));
-
-//MONGO_URL=mongodb://localhost:27017/
-
-// /auth/login
-// /auth/create
-// /auth/forget
-// /auth/logout
-
-// /user/getUser
-// /user/getBookings

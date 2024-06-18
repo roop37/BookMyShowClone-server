@@ -16,7 +16,6 @@ const userSchema = new Schema({
   },
   phoneNumber: {
     type: Number,
-    required: true,
   },
   booking: [
     {
@@ -26,11 +25,9 @@ const userSchema = new Schema({
   ],
   currentCity: {
     type: String,
-    required: true,
   },
   currentState: {
     type: String,
-    required: true,
   },
 });
 
