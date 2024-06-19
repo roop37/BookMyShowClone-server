@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 // const { loginUser, CreateUser } = require("../services/authService");
 
-router.post("/login", loginUser);
-router.post("/create", CreateUser);
+router.get("/:id", getUserById);
+router.get("/booked", getUserBookings);
 
 module.exports = router;
