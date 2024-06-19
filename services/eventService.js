@@ -1,40 +1,41 @@
 const User = require("../models/user");
-const bycrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const secretKey = "My-Secret-key";
+const Event = require("../models/events");
+const Booking = require("../models/booking");
 
-const loginUser = async (req, res) => {
-  const { email, password } = req.body;
-  const user = await User.findOne({ email });
-  if (!user) return res.status(400).json({ prompt: "User Not found" });
-
-  const validPassword = await bycrypt.compare(password, user.password);
-
-  if (!validPassword)
-    return res.status(400).json({ prompt: "Invalid Password" });
-
-  const token = jwt.sign({ userId: user._id }, secretKey, { expiresIn: "1d" });
-  res.json({ token, user });
-};
-
-const CreateUser = async (req, res) => {
-  const { email, password, name } = req.body;
-  const salt = await bycrypt.genSalt(10);
-  const hashedPassword = await bycrypt.hash(password, salt);
-  const user = new User({
-    email,
-    name,
-    password: hashedPassword,
-  });
+const createEvent = async (req, res) => {
   try {
-    const savedUser = await user.save();
-    const token = jwt.sign({ userId: savedUser._id }, secretKey, {
-      expiresIn: "1d",
-    });
-    res.json({ token, savedUser });
+    const newEvent = new Event(req.body);
+    const saveEvent = await newEvent.save();
+
+    res.status(200).json(saveEvent);
   } catch (err) {
     console.log(err);
-    res.status(400).json(err);
+    res.status(400).json({ message: err.message });
   }
 };
-module.exports = { loginUser, CreateUser };
+
+const getEventById = async (req, res) => {
+  try {
+    const { id } = req.body;
+    const event = await Event.findById(id);
+    if (!event) {
+      return res.status(404).json({ message: "Event not found" });
+    }
+    res.json(event);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ message: err.message });
+  }
+};
+
+const getAllEvents = async (req, res) => {
+  try {
+    const events = await Event.find();
+    res.json(events);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ message: err.message });
+  }
+};
+
+module.exports = { createEvent, getEventById, getAllEvents };

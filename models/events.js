@@ -4,30 +4,31 @@ const Schema = mongoose.Schema;
 const EventSchema = new Schema({
   date: {
     type: Date,
-    required: true,
+    default: Date.now,
+    // required: true,
   },
   capacity: {
     type: Number,
   },
   title: {
     type: String,
-    required: true,
+    // required: true,
   },
   desc: {
     type: String,
-    required: true,
+    // required: true,
   },
   eventAddress: {
     type: String,
-    required: true,
+    // required: true,
   },
   city: {
     type: String,
-    required: true,
+    // required: true,
   },
   state: {
     type: String,
-    required: true,
+    // required: true,
   },
   comment: [
     {

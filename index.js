@@ -7,7 +7,7 @@ const eventRoutes = require("./routes/eventRoutes");
 const userRoutes = require("./routes/userRoutes");
 
 app.use(bodyParser.json());
-const conectDB = require("./utils/db");    
+const conectDB = require("./utils/db");
 
 conectDB();
 
@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/auth", authRoute);
-// app.use("/events", eventRoutes);
+app.use("/events", eventRoutes);
 app.use("/user", userRoutes);
 
 app.listen(PORT, () => console.log(`Server running on ${PORT}`));
