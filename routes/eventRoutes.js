@@ -4,13 +4,17 @@ const {
   createEvent,
   getEventById,
   getAllEvents,
+  getEventByNearby,
+  bookEvent,
+  addComment,
 } = require("../services/eventService");
 
 router.post("/createEvent", createEvent);
 router.get("/", getEventById);
 router.get("/events", getAllEvents);
-// router.post("/book", bookEvent);
-// router.get("/eventNearby", getEventByNearby);
-// router.get("/comment", addComment);
+router.post("/book", bookEvent);
+router.get("/eventNearby", getEventByNearby);
+router.post("/comment", addComment);
+// router.post("/cancelBooking", cancelBooking);
 
 module.exports = router;

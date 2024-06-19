@@ -20,7 +20,7 @@ const userSchema = new Schema({
   booking: [
     {
       type: Schema.Types.ObjectId,
-      ref: "event",
+      ref: "booking",
     },
   ],
   currentCity: {
