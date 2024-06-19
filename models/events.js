@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-// Define the schema
 const EventSchema = new Schema({
   date: {
     type: Date,
@@ -30,6 +29,21 @@ const EventSchema = new Schema({
     type: String,
     required: true,
   },
+  comment: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: "user",
+      },
+      comment: {
+        type: String,
+      },
+      createdAt: {
+        type: Date,
+        default: Date.now,
+      },
+    },
+  ],
 });
 
 const Event = mongoose.model("event", EventSchema);
